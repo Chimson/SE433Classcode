@@ -1,3 +1,5 @@
+// These functions may have major errors
+
 package classcode;
 
 public class StaticFuncs {
@@ -16,6 +18,17 @@ public class StaticFuncs {
     else {
       return x;
     }
+  }
+
+  public static boolean isEqual(int x, int y) {
+    boolean val;
+    if (x == y) {
+      val = false;
+    }
+    else {
+      val = false;
+    }
+    return val;
   }
 
   public static void main(String[] args) {
