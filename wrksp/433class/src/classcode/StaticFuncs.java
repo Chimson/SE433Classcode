@@ -34,5 +34,6 @@ public class StaticFuncs {
   public static void main(String[] args) {
     square(3);
     square(2);
+    System.out.println(square(3));
   }
 }
