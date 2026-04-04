@@ -3,7 +3,7 @@ package classcode;
 // do not need to import other shapes classes
 import shapes.*;
 
-public class Demo {
+public class DemoShape {
 
   public static void main(String[] args) {
     Rectangle r = new Rectangle(0, 0, "blue",
