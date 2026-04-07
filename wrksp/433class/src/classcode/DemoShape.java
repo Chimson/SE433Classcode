@@ -1,7 +1,9 @@
 package classcode;
 
 // do not need to import other shapes classes
-import shapes.*;
+import shapes.Rectangle;
+import shapes.Circle;
+import shapes.Shape;
 
 public class DemoShape {
 
