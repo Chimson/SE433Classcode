@@ -1,6 +1,6 @@
 package codesmells;
 
-class PlayerController {
+class LargeMethod {
   
   // simple class for demonstration only
   static class Player {
@@ -10,7 +10,6 @@ class PlayerController {
   }
   
   public void handleInputSMELLS(String input, Player player) {
-    
     if (input.equals("JUMP")) {
       player.velocity = 10;
       player.state = "JUMPING";
@@ -50,4 +49,8 @@ class PlayerController {
     // HINT: Dash implements IInputAction with .apply()
     //       Jump implements IInputAction with .apply()
     //       change input param to IInputAction
+    // Use a command object for Jump and Dash?
+    // HINT: Put them into classes implementing ICommmand.execute();
+  
+  
 }
