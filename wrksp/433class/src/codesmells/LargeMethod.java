@@ -34,7 +34,7 @@ class LargeMethod {
     player.stamina -= 10;
     System.out.println("Player dashes!");
   }
-  
+
   public void handleInput(String input, Player player) {
     if (input.equals("JUMP")) {
       jump(player);
@@ -49,8 +49,7 @@ class LargeMethod {
     // HINT: Dash implements IInputAction with .apply()
     //       Jump implements IInputAction with .apply()
     //       change input param to IInputAction
-    // Use a command object for Jump and Dash?
-    // HINT: Put them into classes implementing ICommmand.execute();
+    //       Command pattern would be ICommmand.execute();
   
   
 }
