@@ -13,6 +13,7 @@ public class StaticFuncs {
   // total possible number of choices for x and y?
   public static int max(int x, int y) {
     if (x > y) {
+      assert x == y;
       return x;
     }
     else {
@@ -35,5 +36,6 @@ public class StaticFuncs {
     square(3);
     square(2);
     System.out.println(square(3));
+    max(3, 2);
   }
 }

@@ -14,7 +14,8 @@ class LargeMethod {
       player.velocity = 10;
       player.state = "JUMPING";
       System.out.println("Player jumps!");
-    } else if (input.equals("DASH")) {
+    } 
+    else if (input.equals("DASH")) {
       player.velocity = 20;
       player.stamina -= 10;
       System.out.println("Player dashes!");
@@ -35,13 +36,23 @@ class LargeMethod {
     System.out.println("Player dashes!");
   }
 
-  public void handleInput(String input, Player player) {
-    if (input.equals("JUMP")) {
-      jump(player);
+  interface IInputCommand {
+    public void execute(Player player);  
+  }
+
+  class JumpCommand implements IInputCommand {
+    public void execute(Player player) {      
+      player.velocity = 10;
+      player.state = "JUMPING";
+      System.out.println("Player jumps!");
     }
-    else if (input.equals("DASH")) {
-      dash(player);
-    }
+  }
+
+  // move check against input to calling ()
+  
+
+  public void checkInput(Player player, IInputCommand command) {
+    command.execute(player);
   }
   
   // How would you:
@@ -49,7 +60,7 @@ class LargeMethod {
     // HINT: Dash implements IInputAction with .apply()
     //       Jump implements IInputAction with .apply()
     //       change input param to IInputAction
-    //       Command pattern would be ICommmand.execute();
-  
+    //       Like a Command pattern (ICommmand.execute());
+               // encapsulates an action
   
 }

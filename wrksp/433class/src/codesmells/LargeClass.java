@@ -28,4 +28,15 @@ public class LargeClass {
   
   class Enemy {}
   
+  interface IAttackModifier {
+    public void apply(double amount);
+  }
+
+  class MeleeAttack implements IAttackModifier {
+    double meleeAttack;
+    public void apply(double amount) {}
+  }
+
+
+
 }

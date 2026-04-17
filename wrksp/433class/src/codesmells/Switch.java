@@ -4,15 +4,16 @@ package codesmells;
 
 public class Switch {
   
-  public class Enemy {
+  static abstract class Enemy {
     
-    private String type;
+    protected String type;
     
     public Enemy(String type) {
       this.type = type;
     }
     
-    public void attack() {
+    public abstract void attack();
+      /*
       switch (type) {
         case "GOBLIN":
           System.out.println("Goblin slashes with a dagger!");
@@ -25,8 +26,20 @@ public class Switch {
           break;
         default:
           System.out.println("Unknown enemy attacks!");
-      }
-    }
+      }*/
+      
+  
   }
+
+  static class Goblin extends Enemy {
+    public Goblin() {
+      super("Goblin");
+    }
+
+    public void attack() {
+      System.out.println("Goblin slashes with a dagger!");
+    }  
+  }
+  // class Orc extends Enemy{}
   
 }

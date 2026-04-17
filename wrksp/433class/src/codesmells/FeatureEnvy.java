@@ -11,6 +11,11 @@ public class FeatureEnvy {
     public double critChance;
     public double critMultiplier;
     public String weaponType;
+
+    public int accept(IStatsVisitor visitor) {
+      return visitor.visit(this);
+    }
+
   }
   
   // Uses more of PlayerStats data than its own class data
@@ -18,10 +23,17 @@ public class FeatureEnvy {
   // Visitor pattern: make calculateDamage() a visit() in a DamageVisitor class
      // implements IStatsVisitor
      // add an acceptVisitor(IStatsVisitor) method to PlayerStats class anc call visit()
-  
-  public class DamageCalculator {
+  // What about a Strategy Pattern? (choosing how to do something)
+  //   Make a DamageStrategy class implements IDamageStategy.invoke() , give an object to PlayerStats 
+  //   give PlayerStats calculateDamage() which calls invoke()
+
+  interface IStatsVisitor {
+    public int visit(PlayerStats stats);
+  }
+
+  public class DamageVistor implements IStatsVisitor {
     
-    public int calculateDamage(PlayerStats stats) {
+    public int visit(PlayerStats stats) {
       int dmg = stats.baseDamage + stats.strength;
       if (stats.critChance > 0.25) {
         dmg *= stats.critMultiplier;
