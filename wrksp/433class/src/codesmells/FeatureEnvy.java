@@ -23,7 +23,7 @@ public class FeatureEnvy {
   // Visitor pattern: make calculateDamage() a visit() in a DamageVisitor class
      // implements IStatsVisitor
      // add an acceptVisitor(IStatsVisitor) method to PlayerStats class anc call visit()
-  // What about a Strategy Pattern? (choosing how to do something)
+  // What L a Strategy Pattern? (choosing how to do something)
   //   Make a DamageStrategy class implements IDamageStategy.invoke() , give an object to PlayerStats 
   //   give PlayerStats calculateDamage() which calls invoke()
 

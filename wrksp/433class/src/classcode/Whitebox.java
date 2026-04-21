@@ -1,0 +1,150 @@
+package classcode;
+import java.io.IOException;
+
+public class Whitebox {
+
+  public double averageOHIntsInRange(int[] vals, int min, int max) {
+
+    int i = 0;
+    int totalValid = 0;
+    double sum = 0;
+    double average = Double.MIN_VALUE;
+
+    while(i < vals.length) {
+      if (vals[i] >= min && vals[i] <= max) {
+        totalValid += 1;
+        sum += vals[i];
+      }
+      i += 1;
+    }
+
+    if (totalValid > 0) {
+      average = sum/totalValid;
+    }
+    else {
+      average = Double.MIN_VALUE;
+    }
+
+    return average;            
+
+  }
+
+  public int maxInt(int x, int y) {
+    if (x >= y) {   // 1
+      return x;     // 2
+    }
+    else {          
+      return y;     // 3
+    }
+                    // 4
+  }
+
+  class Node {
+    public Node next;
+  }
+
+  public void addToRightEnd(Node n, Node rn) {
+    if (n == null) {       
+      return;              
+    }
+    if (n.next == null) {      
+      n.next = rn;          
+    }
+  }
+
+  public double machineEpsilon() {
+    double eps = 1.0;                       
+    while ( (1.0 + eps/2.0) != 1.0) {       
+      eps /= 2.0;                           
+    } 
+    return eps;                             
+  }
+  
+  public void demo() {
+    Node n0 = new Node();
+    Node n1 = new Node();
+    addToRightEnd(null, n0);
+    addToRightEnd(n0, n1);    // n0 -> n1 now
+    addToRightEnd(n0, n1);    // n1o.next != null
+    
+    System.out.println(machineEpsilon());
+
+    System.out.println(parseInputMenuOption('a'));
+
+    int[] vals = new int[] {3, 7, 10, 65, -5, 14, 21};
+      
+    System.out.println(averageOHIntsInRange(vals, -50, 50));
+        
+  }
+
+  public void demoIO() {
+    try {
+      menu();
+    }
+    catch(IOException e) {}
+  }
+
+  public static void main(String[] args) {
+    (new Whitebox()).demo();
+    // (new Whitebox()).demoIO();
+  }
+
+
+  public static String parseInputMenuOption(char c) {
+    String msg = "";      
+    switch(c) {     
+      case 'a':        
+        msg = "Option a";    
+        break;
+      case 'b':         
+        msg = "Option b";  
+        break;          
+      case 'c':         
+        msg = "Option c";
+        break;
+      case 'q':
+        msg = "QUIT";
+        break;
+      default: 
+        msg = "You must pick a, b, c, or q";
+    }
+    return msg;        
+  }
+
+  public static void menu() throws IOException {
+    
+    String msg = "";
+    do {
+      System.out.println("a) Option a");
+      System.out.println("b) Option b");
+      System.out.println("c) Option c");
+      System.out.print("Make a selection: ");
+      char choice;
+      do {
+        choice = (char) System.in.read();
+      }
+      while(choice == '\n');
+      msg = parseInputMenuOption(choice);
+      System.out.println("You selected " + msg);
+    }
+    while(msg != "QUIT");
+    System.out.println("... goodbye!");
+  } 
+
+  public static String toLetterGrade(double grade) {
+    String lgrade = "";
+    if (grade < 80.0) {
+      return "C or less";
+    }
+    else if (grade < 90.0) {
+      return "B";
+    }
+    else {
+      return "A";
+    }
+  } 
+
+
+
+
+}

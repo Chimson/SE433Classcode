@@ -2,7 +2,7 @@
 
 package classcode;
 
-public class StaticFuncs {
+public class Faults {
  
   // Where is the defect, fault, and failure?
   // When is it correct and when is it a failure?
