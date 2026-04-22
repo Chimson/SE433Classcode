@@ -139,7 +139,22 @@ public class Whitebox {
     }
   } 
 
-
+  public static double calculateDiscount(int apples, int bananas) {
+    double discount = 0.0;
+    if (apples > 5) {
+      discount = discount + 1.00; // $1 off
+    }
+    else {
+      discount = discount + 0.00;
+    }
+    if (bananas > 10) {
+      discount = discount + 2.00; // $2 off
+    }
+    else {
+      discount = discount + 0.00;
+    }
+    return discount;
+  }
 
 
 }
