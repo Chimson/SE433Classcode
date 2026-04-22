@@ -3,13 +3,10 @@ import java.io.IOException;
 
 public class Whitebox {
 
-  public double averageOHIntsInRange(int[] vals, int min, int max) {
-
+  public double averageOfIntsInRange(int[] vals, int min, int max) {
     int i = 0;
     int totalValid = 0;
     double sum = 0;
-    double average = Double.MIN_VALUE;
-
     while(i < vals.length) {
       if (vals[i] >= min && vals[i] <= max) {
         totalValid += 1;
@@ -17,16 +14,14 @@ public class Whitebox {
       }
       i += 1;
     }
-
+    double average;
     if (totalValid > 0) {
       average = sum/totalValid;
     }
     else {
-      average = Double.MIN_VALUE;
+      throw new IllegalArgumentException("Your array has no values between min and max");
     }
-
     return average;            
-
   }
 
   public int maxInt(int x, int y) {
@@ -65,7 +60,7 @@ public class Whitebox {
     Node n1 = new Node();
     addToRightEnd(null, n0);
     addToRightEnd(n0, n1);    // n0 -> n1 now
-    addToRightEnd(n0, n1);    // n1o.next != null
+    addToRightEnd(n0, n1);    // n0.next != null
     
     System.out.println(machineEpsilon());
 
@@ -73,7 +68,7 @@ public class Whitebox {
 
     int[] vals = new int[] {3, 7, 10, 65, -5, 14, 21};
       
-    System.out.println(averageOHIntsInRange(vals, -50, 50));
+    System.out.println(averageOfIntsInRange(vals, -50, 50));
         
   }
 
