@@ -62,7 +62,7 @@ public class Whitebox {
     addToRightEnd(n0, n1);    // n0 -> n1 now
     addToRightEnd(n0, n1);    // n0.next != null
     
-    System.out.println(machineEpsilon());
+    System.out.println("ME is " + machineEpsilon());
 
     System.out.println(parseInputMenuOption('a'));
 
@@ -129,14 +129,15 @@ public class Whitebox {
   public static String toLetterGrade(double grade) {
     String lgrade = "";
     if (grade < 80.0) {
-      return "C or less";
+      lgrade = "C or less";
     }
     else if (grade < 90.0) {
-      return "B";
+      lgrade =  "B";
     }
     else {
-      return "A";
+      lgrade = "A";
     }
+    return lgrade;
   } 
 
   public static double calculateDiscount(int apples, int bananas) {
