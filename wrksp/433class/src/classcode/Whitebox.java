@@ -70,6 +70,7 @@ public class Whitebox {
       
     System.out.println(averageOfIntsInRange(vals, -50, 50));
         
+    printPrimes(30);
   }
 
   public void demoIO() {
@@ -156,6 +157,30 @@ public class Whitebox {
     }
     return discount;
   }
+
+  static void printPrimes(int n) {
+    int count = 0;
+    int candidate = 2;
+
+    while (count < n) {
+      boolean prime = true;
+
+      for (int i = 2; i <= Math.sqrt(candidate); i++) {
+        if (candidate % i == 0) {
+          prime = false;
+          break;
+        }
+      }
+
+      if (prime) {
+        System.out.println(candidate);
+        count++;
+      }
+
+      candidate++;
+    }
+  }
+
 
 
 }
