@@ -81,8 +81,8 @@ public class Whitebox {
   }
 
   public static void main(String[] args) {
-    (new Whitebox()).demo();
-    // (new Whitebox()).demoIO();
+    // (new Whitebox()).demo();
+    (new Whitebox()).demoIO();
   }
 
 
