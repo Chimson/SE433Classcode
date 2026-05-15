@@ -1,0 +1,144 @@
+Selecting Test Cases Considering Boundary Value Analysis
+From The Art of Software Testing, 3rd Edition
+
+Boundary value analysis differs from equivalence partitioning in two respects:
+
+1. Rather than selecting any element in an equivalence class as being representative,
+boundary value analysis requires that one or more elements be selected such that each
+edge of the equivalence class is the subject of a test.
+
+2. Rather than just focusing attention on the input conditions (input space), test cases
+are also derived by considering the result space (output equivalence classes).
+
+==========
+
+It is difficult to present a “cookbook” for boundary value analysis, since it requires a degree
+of creativity and a certain amount of specialization toward the problem at hand.
+(Hence, like many other aspects of testing, it is more a state of mind than anything else.)
+However, a few general guidelines are in order:
+
+1. If an input condition specifies a range of values, write test cases for the ends of the range,
+and invalid-input test cases for situations just beyond the ends. For instance, if the valid
+domain of an input value is –1.0 to 1.0, write test cases for the situations –1.0, 1.0, –1.001, and 1.001.
+(Other textbooks also would add just inside the interval but close to the boundaries)
+
+2. If an input condition specifies a number of values, write test cases for the minimum and
+maximum number of values and one beneath and beyond these values. For instance,
+if an input file can contain 1–255 records, write test cases for 0, 1, 255, and 256 records.
+(Other textbooks also would add just inside the range but close to the boundaries: add 2, 254)
+
+3. Use guideline 1 for each output condition. For instance, if a payroll program computes
+the monthly FICA deduction, and if the minimum is $0.00 and the maximum is $1,165.25,
+write test cases that cause $0.00 and $1,165.25 to be deducted. Also, see whether it is
+possible to invent test cases that might cause a negative deduction or a deduction of
+more than $1,165.25.
+
+4. Use guideline 2 for each output condition. If an information retrieval system
+displays the most relevant abstracts based on an input request, but never more than four
+abstracts, write test cases such that the program displays zero, one, and four abstracts,
+and write a test case that might cause the program to erroneously display five abstracts.
+
+5. If the input or output of a program is an ordered set (a sequential file, for example, or a
+linear list or a table), focus attention on the first and last elements of the set.
+
+6. In addition, use your ingenuity to search for other boundary conditions.
+
+Equivalence Classes for binary search, rank(int[] arr, int key). SEE equiv-classes-bin-search.txt
+
+Equivalence Classes (EC) based input conditions:
+  IC - Must take int array of any size. say n
+    Valid EC - the set of arrays of any size
+    Invalid EC - empty array
+  IC - Array can hold the key in any position
+    Valid EC - key at arr[0]
+    Valid EC - key at arr[n-1]
+    Valid EC - arr[0] < key < arr[n-1]
+    Invalid EC's here are Valid EC's for next input condition
+  IC - Array may not contain the key at all
+    Valid EC - key < all the array values
+    Valid EC - key > all the array values
+    Valid EC - key not in array but in arr[0] < key < arr[n-1]
+    Invalid EC's here are Valid EC's for previous input condition
+  IC - Key can be any int
+    Valid EC - pick any int key
+    Invalid EC does not exist since compiler will coerce to int or throw exception
+
+Boundaries of the Input Equivalence Classes for BVA:
+    Valid EC - the set of arrays of any size (>=1)
+      pick an array of size 1
+      pick an array of size 2
+      (size 0 is covered by next EC)
+    Invalid EC - empty array
+      pick an empty array
+    Valid EC - key at arr[0]
+      (key smaller than arr[0] is selected below)
+      pick array with key at index 0
+      pick array with key at index 1
+    Valid EC - key at arr[n-1]
+      pick array with key at index n-1
+      pick array with key at index n-2
+      (key just outside the array is selected below)
+    Valid EC - arr[0] < key < arr[n-1] in the array: arr[1] <= key <= arr[n-2]
+      (arr[0], arr[1], arr[n-2], arr[n-1] already selected)
+      pick array with key in arr[2]
+      pick array with key in arr[n-3]
+    Valid EC - key < all the array values (not in array)
+      pick a key smaller than arr[0], closest to it (since arr is assumed ordered)
+      (at arr[0] already selected)
+    Valid EC - key > all the array values (not in array)
+      pick a key larger than arr[n-1], but just after it
+      (arr[n-1] already selected)
+    Valid EC - key not in array but in arr[0] < key < arr[n-1]:
+      pick a key just above arr[0] closest to it
+      pick a key just below arr[n-1] closest to it
+    Valid EC - pick any int key
+      (Specification says do not need to check maximum and minimum possible ints)
+
+Can apply the same numbering approach in case boundaries overlap
+
+#1 pick an array of size 1
+#2 pick an array of size 2
+#3 pick an empty array
+#4 pick array with key at index 0
+#5 pick array with key at index 1
+#6 pick array with key at index n-1
+#7 pick array with key at index n-2
+#8 pick array with key in arr[2]
+#9 pick array with key in arr[n-3]
+#10 pick a key smaller than arr[0], closest to it (since arr is assumed ordered)
+#11 pick a key larger than arr[n-1], but just after it
+#12 pick a key just above arr[0] closest to it, not in the array
+#13 pick a key just below arr[n-1] closest to it, not in the array
+
+Equivalence Classes (EC) based on Output Conditions (OC):
+ OC - returns any index
+   Valid EC - returns i s.t. 0 <= i <= n-1, n the size of the array
+     pick an input so that rank returns 0 and 1 - DONE with #4 and #5
+     pick an input so that rank returns n-2 and n-1 - DONE with #6 and #7
+   (Invalid EC covered below)
+ OC - returns -1
+    ValidEC - returns -1 when key is smaller than arr[0]
+      pick a key smaller than arr[0] closest to it - DONE with #10
+    ValidEC - returns -1 when key is larger than arr[n-1]
+      pick a key larger than arr[n-1] closest to it - DONE with #11
+    ValidEC - returns -1 when key is not in array but within arr[0] < key < arr[n-1]: arr[1] <= key <= arr[n-1]
+      pick a key larger than arr[1] closest to it, not in array - DONE with #12
+      pick a key smaller than arr[n-1] but closest to it, not in array - DONE with #13
+    (Invalid EC covered in previous EC)
+NO NEW ADDED BOUNDARY TEST CASES FROM BVA ON INPUT
+
+Test Cases:
+rank([10], 10) - covers #1, #4
+rank([10, 14], 14) - covers #2, #5, #6
+rank([], 0) - covers #3
+rank([10, 14, 17], 14) covers #7
+rank([10, 14, 17], 17) covers #8
+rank([10, 14, 17, 20], 10) covers #9
+rank([10, 14, 17, 20], 9) covers #10
+rank([10, 14, 17, 20], 21) covers #11
+rank([10, 14, 17, 20], 11) covers #12
+rank([10, 14, 17, 20], 19) covers #13
+
+One quick note about Equivalence Partitioning and BVA from the text:
+One weakness of boundary value analysis and equivalence partitioning
+is that they do not explore combinations of input circumstances.

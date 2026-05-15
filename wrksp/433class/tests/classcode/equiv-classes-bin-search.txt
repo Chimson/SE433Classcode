@@ -1,0 +1,105 @@
+Selecting Test Cases Considering only Equivalence Partitioning
+From The Art of Software Testing, 3rd Edition
+
+Given an input or external condition, identifying the equivalence classes is largely a heuristic process.
+Follow these guidelines:
+
+1. If an input condition specifies a range of values (e.g., “the item count can be from 1 to 999”),
+identify one valid equivalence class (1<item count<999) and two invalid equivalence classes
+(item count<1 and item count>999).
+
+2. If an input condition specifies the number of values (e.g., “one through six owners can be
+listed for the automobile”), identify one valid equivalence class and two invalid equivalence
+classes (no owners and more than six owners).
+
+3. If an input condition specifies a set of input values, and there is reason to believe
+that the program handles each differently (“type of vehicle must be BUS, TRUCK, TAXICAB,
+PASSENGER, or MOTORCYCLE”), identify a valid equivalence class for each and one invalid
+equivalence class (“TRAILER,” for example).
+
+4. If an input condition specifies a “must-be” situation, such as “first character of the
+identifier must be a letter,” identify one valid equivalence class (it is a letter) and one
+invalid equivalence class (it is not a letter).
+
+If there is any reason to believe that the program does not handle elements in an equivalence
+ class identically, split the equivalence class into smaller equivalence classes. We will illustrate
+ an example of this process shortly.
+
+==========
+
+Binary Search in SE450Classcode/src/classcode:
+public static int rank(int[] a, int key) {...}
+Assume that we don't know anything about binary search implementation
+    so we don't need to consider how the middle pointer shifts, how that applied to even and odd size arrays, etc.
+We only assume that it is attempting to find a key in a sorted array and return its index if found, -1 if not
+Also we'll assume that the function does not need to validate or detect that the array is sorted
+    this could be handled before this function is called
+
+Explicit Input Conditions (IC):
+    Must take int array of any size
+        do not need to consider null reference
+    Array can hold the key in any position
+    Array may not contain the key at all
+    Key can be any int
+        do not need to consider maximum or minimum possible ints
+
+==========
+
+We want to find both valid and invalid equivalence classes
+Equivalence Classes (EC) based on above input conditions:
+  IC - Must take int array of any size. say n
+    Valid EC - the set of arrays of any size
+    Invalid EC - empty array
+  IC - Array can hold the key in any position
+    Valid EC - key at arr[0]
+    Valid EC - key at arr[n-1]
+    Valid EC - arr[0] < key < arr[n-1]
+    Invalid EC's here are Valid EC's for next input condition
+  IC - Array may not contain the key at all
+    Valid EC - key < all the array values
+    Valid EC - key > all the array values
+    Valid EC - key not in array but in arr[0] < key < arr[n-1]
+    Invalid EC's here are Valid EC's for previous input condition
+  IC - Key can be any int
+    Valid EC - pick any int key
+    Invalid EC does not exist since compiler will coerce to int or throw exception
+
+=====
+
+Identifying the Test Cases based on the Equivalence Classes above
+
+The second step is the use of equivalence classes to identify the test cases.
+
+The process is as follows:
+1. Assign a unique number to each equivalence class.
+2. Until all valid equivalence classes have been covered by (incorporated into) test cases,
+  write a new test case covering as many of the uncovered valid equivalence classes as possible.
+3. Until your test cases have covered all invalid equivalence classes,
+  write a test case that covers one, and only one, of the uncovered invalid equivalence classes.
+
+#1 Valid EC - the set of arrays of any size
+#2 Invalid EC - empty array
+--- These below can be separated into other ECs because program maybe handles each differently
+#3 Valid EC - key at arr[0]
+#4 Valid EC - key at arr[n-1]
+#5 Valid EC - arr[0] < key < arr[n-1] in the array
+---
+#6 Valid EC - key < all the array values (not in array)
+#7 Valid EC - key > all the array values (not in array)
+#8 Valid EC - key not in array but in arr[0] < key < arr[n-1]
+#9 Valid EC - pick any int key
+
+Test Cases from ECs:
+
+rank([1, 2, 3, 4], 1) checks ECs of #1, #3, #9
+rank([], 1) checks ECs of #2
+rank([1, 2, 3, 4], 4) checks ECs of #4
+rank([1, 2, 3, 4], 2) checks ECs of #5
+rank([2, 5, 7, 9, 15], -10) checks ECs of #6
+rank([2, 5, 7, 9, 15], 20) checks ECs of #7
+rank([2, 5, 7, 9, 15], 6) checks ECs of #8
+
+
+
+
+
