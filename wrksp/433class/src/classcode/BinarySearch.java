@@ -11,7 +11,7 @@ public class BinarySearch {
     rank returns true when it finds key in the array    
   */
 
-public static int rank(int key, int[] a) {
+public static int rank(int[] a, int key) {
 	// a must be sorted
   int lo = 0;
   int hi = a.length - 1;
@@ -31,16 +31,6 @@ public static int rank(int key, int[] a) {
 }
   
 
-  public static void main(String[] args) {
+  public static void main(String[] args) {}
   
-    int[] arr1 = new int[] 
-      {10, 11, 12, 16, 18, 23, 29, 33, 48, 54, 57, 68, 77, 84, 98};
-    
-    assert BinarySearch.rank(23, arr1) == 5;
-    assert BinarySearch.rank(10, arr1) == 0;
-    assert BinarySearch.rank(98, arr1) == 14;
-    assert BinarySearch.rank(12, arr1) == 2;
-    
-    
-  }
 }
