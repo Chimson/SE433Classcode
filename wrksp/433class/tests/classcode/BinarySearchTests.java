@@ -23,8 +23,21 @@ public class BinarySearchTests {
     int actual = 0;
     
     // assert
-    assertEquals(expected, 0);
+    assertEquals(expected, actual);
     
+  }
+  
+  @Test
+  void ArrayEmptyAnyKey() {
+    // setup
+    int[] arr = new int[] {};
+    
+    // apply test case
+    int expected = BinarySearch.rank(arr, 1);
+    int actual = -1;
+    
+    // assert
+    assertEquals(expected, actual);
   }
   
   
