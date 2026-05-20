@@ -11,8 +11,10 @@ public class CaptureStdOut {
   
   public CaptureStdOut() {
     originalOut = System.out;
+    byteBuffer = new ByteArrayOutputStream();
   }
   
+  // reallocate byteBuffer to make obj reusable
   public void redirectToBuffer() {
     byteBuffer = new ByteArrayOutputStream();
     System.setOut(new PrintStream(byteBuffer));
@@ -43,4 +45,12 @@ public class CaptureStdOut {
     assertEquals("capture this!\n", capture.toString());
     System.out.println(capture);
   }
+  
+  @Test
+  void checkEmptyByteArrayOutput() {
+    CaptureStdOut capture = new CaptureStdOut();
+    assertEquals("", capture.toString());
+  }
+  
+  
 }
