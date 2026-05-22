@@ -43,7 +43,8 @@ linear list or a table), focus attention on the first and last elements of the s
 
 6. In addition, use your ingenuity to search for other boundary conditions.
 
-Equivalence Classes for binary search, rank(int[] arr, int key). SEE equiv-classes-bin-search.txt
+allow rank to a handle null values
+Equivalence Classes for binary search, int rank(int[] arr, int key). SEE equiv-classes-bin-search.txt
 
 Equivalence Classes (EC) based input conditions:
   IC - Must take int array of any size. say n
@@ -77,7 +78,6 @@ Boundaries of the Input Equivalence Classes for BVA:
     Valid EC - key at arr[n-1]
       pick array with key at index n-1
       pick array with key at index n-2
-      (key just outside the array is selected below)
     Valid EC - arr[0] < key < arr[n-1] in the array: arr[1] <= key <= arr[n-2]
       (arr[0], arr[1], arr[n-2], arr[n-1] already selected)
       pick array with key in arr[2]

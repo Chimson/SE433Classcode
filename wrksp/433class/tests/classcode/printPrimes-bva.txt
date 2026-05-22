@@ -1,0 +1,19 @@
+BVA
+
+void printPrimes(int n) {}
+
+Input Conditions:
+    int n can be any positive size
+      (exclude the minimum and maximum possible) int
+      (does not handle negative int, so do not test)
+
+Equivalence class:
+    Set of all positive ints
+    Boundary at 1
+
+Test Cases:
+   {0, 1, 2}
+
+
+
+

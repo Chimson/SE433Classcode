@@ -158,7 +158,7 @@ public class Whitebox {
     return discount;
   }
 
-  static void printPrimes(int n) {
+  void printPrimes(int n) {
     int count = 0;
     int candidate = 2;
 
