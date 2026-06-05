@@ -162,7 +162,7 @@ public class Whitebox {
     int count = 0;
     int candidate = 2;
 
-    while (count < n) {
+    while (count < n) {    // actual: count < n
       boolean prime = true;
 
       for (int i = 2; i <= Math.sqrt(candidate); i++) {

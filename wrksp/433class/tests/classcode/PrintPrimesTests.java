@@ -1,9 +1,11 @@
 package classcode;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import java.io.*;
 import static org.junit.jupiter.api.Assertions.*;
 import testtools.CaptureStdOut;
+import java.time.Duration;
 
 class PrintPrimesTests {
   
@@ -44,6 +46,39 @@ class PrintPrimesTests {
     assertEquals(expected, actual);
   }
   
+  
+  @Test
+  void dummy() {
+    wb.printPrimes(3);
+  }
+  
+  // kills count < n, negated conditional
+  @BeforeAll
+  static void mutantTimeout() {
+    assertTimeoutPreemptively(Duration.ofMillis(50), () -> {
+      Whitebox w = new Whitebox();
+      w.printPrimes(-10);
+    });
+  }
+  
+  // kills i <= Math.sqrt(candidate), changed conditional boundary (to <)
+  @Test
+  void primesNThree() {
+    capture.redirectToBuffer();
+    wb.printPrimes(3);
+    String expected = "2\n3\n5\n";
+    String actual = capture.toString();
+    assertEquals(expected, actual);
+  }
+  
+  // kills count++ mutation to count--
+  @BeforeAll
+  static void check() {
+    assertTimeoutPreemptively(Duration.ofMillis(50), () -> {
+      Whitebox w = new Whitebox();
+      w.printPrimes(1);
+    });
+  }
   
   
   
