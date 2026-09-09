@@ -1,0 +1,11 @@
+/bin/
+.classpath
+.project
+.settings/
+comp_run.zsh
+classcode.vim
+.idea/
+433class.iml
+run.zsh
+report/
+/.mvn/
