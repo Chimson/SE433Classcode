@@ -1,6 +1,6 @@
 package shapes;
 
-public abstract class Shape {
+public class Shape {
   
   // (x, y) center in 2D
   // add set methods to make fields mutable/writable
@@ -21,9 +21,11 @@ public abstract class Shape {
     return this.area() > other.area();
   }
   
+
   // overridden in subclasses
-  
-  public abstract double area();
+  public double area() {
+    return 0.0;
+  }
   
   
   // overridden from Object class
