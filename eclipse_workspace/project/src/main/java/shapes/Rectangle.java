@@ -1,6 +1,6 @@
 package shapes;
 
-public class Rectangle extends Shape {
+public class Rectangle extends Shape implements Perimeter {
   
   // add set methods to make fields mutable from any class
   // add get methods to make fields readable from any class
@@ -26,4 +26,20 @@ public class Rectangle extends Shape {
   public String toString() {
     return "Shape: (" + x + ", " + y + ", " + color + ", " + width + ", " + height + ")";
   }
+
+	public static void main(String[] args) {
+		Rectangle r = new Rectangle(0, 0, "blue", 2, 6);
+	  r.area();
+
+		Shape s = new Rectangle(0, 0, "blue", 2, 6);
+		r.isBiggerThan(s);
+		s.area();
+	}
+
+	@Override
+	public double perimeter() {
+		return 2 * width + 2 * height;
+	}
+
+
 }

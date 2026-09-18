@@ -13,7 +13,6 @@ public class Faults {
   // total possible number of choices for x and y?
   public static int max(int x, int y) {
     if (x > y) {
-      assert x == y;
       return x;
     }
     else {

@@ -1,6 +1,6 @@
 package shapes;
 
-public class Shape {
+public abstract class Shape {
   
   // (x, y) center in 2D
   // add set methods to make fields mutable/writable
@@ -23,11 +23,9 @@ public class Shape {
   
 
   // overridden in subclasses
-  public double area() {
-    return 0.0;
-  }
-  
-  
+  abstract double area();
+
+
   // overridden from Object class
   public String toString() {
     return "Shape: (" + x + ", " + y + ", " + color + ")";
