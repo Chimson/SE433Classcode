@@ -1,8 +1,8 @@
 package codesmells;
 
 public class FeatureEnvy {
-  
-  
+
+
   public class PlayerStats {
     // public for simplicity, but could be seen with private fields and public get methods
     public int baseDamage;
@@ -11,29 +11,17 @@ public class FeatureEnvy {
     public double critChance;
     public double critMultiplier;
     public String weaponType;
-
-    public int accept(IStatsVisitor visitor) {
-      return visitor.visit(this);
-    }
-
   }
-  
+
   // Uses more of PlayerStats data than its own class data
   // How to fix?
   // Visitor pattern: make calculateDamage() a visit() in a DamageVisitor class
      // implements IStatsVisitor
-     // add an acceptVisitor(IStatsVisitor) method to PlayerStats class anc call visit()
-  // What L a Strategy Pattern? (choosing how to do something)
-  //   Make a DamageStrategy class implements IDamageStategy.invoke() , give an object to PlayerStats 
-  //   give PlayerStats calculateDamage() which calls invoke()
+     // add an acceptVisitor(IStatsVisitor) method to PlayerStats class and call visit()
 
-  interface IStatsVisitor {
-    public int visit(PlayerStats stats);
-  }
+  public class DamageCalculator {
 
-  public class DamageVistor implements IStatsVisitor {
-    
-    public int visit(PlayerStats stats) {
+    public int calculateDamage(PlayerStats stats) {
       int dmg = stats.baseDamage + stats.strength;
       if (stats.critChance > 0.25) {
         dmg *= stats.critMultiplier;
@@ -44,6 +32,6 @@ public class FeatureEnvy {
       return dmg;
     }
   }
-  
-  
+
+
 }

@@ -1,19 +1,19 @@
 package codesmells;
 
-// How do you use polymorphism to eliminate this code smell?
+// How do you use polymorphism to eliminate this code smell
+// could use inheritance or any other abstraction
 
 public class Switch {
-  
-  static abstract class Enemy {
-    
-    protected String type;
-    
+
+  public class Enemy {
+
+    private String type;
+
     public Enemy(String type) {
       this.type = type;
     }
-    
-    public abstract void attack();
-      /*
+
+    public void attack() {
       switch (type) {
         case "GOBLIN":
           System.out.println("Goblin slashes with a dagger!");
@@ -26,20 +26,8 @@ public class Switch {
           break;
         default:
           System.out.println("Unknown enemy attacks!");
-      }*/
-      
-  
-  }
-
-  static class Goblin extends Enemy {
-    public Goblin() {
-      super("Goblin");
+      }
     }
-
-    public void attack() {
-      System.out.println("Goblin slashes with a dagger!");
-    }  
   }
-  // class Orc extends Enemy{}
-  
+
 }

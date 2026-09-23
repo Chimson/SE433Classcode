@@ -1,10 +1,10 @@
 package codesmells;
 
 public class LongParameterList {
- 
+
   // fix by creating a DamageParams class parameter object
   class CombatUtils {
-    
+
     public static int calculateDamage(
       int baseDamage,
       int strength,
@@ -18,6 +18,6 @@ public class LongParameterList {
       }
       return Math.max(dmg, 0);
     }
-    
+
   }
 }
