@@ -34,6 +34,7 @@ public class Rectangle extends Shape implements Perimeter {
 		Shape s = new Rectangle(0, 0, "blue", 2, 6);
 		r.isBiggerThan(s);
 		s.area();
+
 	}
 
 	@Override

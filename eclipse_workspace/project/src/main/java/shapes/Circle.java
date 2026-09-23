@@ -1,6 +1,6 @@
 package shapes;
 
-public class Circle extends Shape {
+public class Circle extends Shape implements Perimeter {
   
   private double radius;
   
@@ -17,4 +17,9 @@ public class Circle extends Shape {
   public double circumference() {
     return 2 * Math.PI * radius;
   }
+
+	@Override
+	public double perimeter() {
+		return Math.PI * radius * 2;
+	}
 }
