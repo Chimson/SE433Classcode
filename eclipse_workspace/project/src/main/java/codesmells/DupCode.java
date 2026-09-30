@@ -11,25 +11,25 @@ public class DupCode {
     private int meleeAttack;
     private double meleeAttackBoost;
 
-    public void bowAttack(Enemy e) {
-      int base = meleeAttack + 5;
+		private void attack(int base, Enemy e) {
       double boosted = base * meleeAttackBoost;
       int damage = (int) boosted;
       e.health -= damage;
+		}
+
+    public void bowAttack(Enemy e) {
+      int base = meleeAttack + 5;
+      attack(base, e);
     }
 
     public void swordAttack(Enemy e) {
       int base = meleeAttack + 7;
-      double boosted = base * meleeAttackBoost;
-      int damage = (int) boosted;
-      e.health -= damage;
+			attack(base, e);
     }
 
     public void axeAttack(Enemy e) {
       int base = meleeAttack + 9;
-      double boosted = base * meleeAttackBoost;
-      int damage = (int) boosted;
-      e.health -= damage;
+			attack(base, e);
     }
   }
 
