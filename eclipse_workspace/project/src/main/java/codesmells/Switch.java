@@ -5,6 +5,10 @@ package codesmells;
 
 public class Switch {
 
+	interface IAttack {
+		void attack();
+	}
+
   public class Enemy {
 
     private String type;
@@ -14,20 +18,27 @@ public class Switch {
     }
 
     public void attack() {
-      switch (type) {
-        case "GOBLIN":
-          System.out.println("Goblin slashes with a dagger!");
-          break;
-        case "ORC":
-          System.out.println("Orc swings a heavy axe!");
-          break;
-        case "DRAGON":
-          System.out.println("Dragon breathes fire!");
-          break;
-        default:
-          System.out.println("Unknown enemy attacks!");
-      }
+			System.out.println("Unknown enemy attacks!");
     }
+
+		// make the same kind of class for Dragon, and Orc
+		class Goblin implements IAttack {
+			@Override
+			public void attack() {
+				System.out.println("Goblin slashes with a dagger!");
+			}
+		}
+
+		public void demo() {
+			// Enemy e = new Enemy("GOBLIN");
+			// e.attack();
+
+			IAttack g = new Goblin();
+			g.attack();
+
+			// e.getAttacker().getEntity().getHealth().getHealthValue().getAmount().reduce();
+		}
+
   }
 
 }

@@ -5,19 +5,23 @@ public class LongParameterList {
   // fix by creating a DamageParams class parameter object
   class CombatUtils {
 
-    public static int calculateDamage(
-      int baseDamage,
-      int strength,
-      int armor,
-      boolean isCritical,
-      double critMultiplier)
+    public static int calculateDamage(DamageParams p)
     {
-      int dmg = baseDamage + strength - armor;
-      if (isCritical) {
-        dmg *= critMultiplier;
+      int dmg = p.baseDamage + p.strength - p.armor;
+      if (p.isCritical) {
+        dmg *= p.critMultiplier;
       }
       return Math.max(dmg, 0);
     }
 
   }
+
+	class DamageParams {
+		int baseDamage;
+		int strength;
+		int armor;
+		boolean isCritical;
+		double critMultiplier;
+	}
+
 }

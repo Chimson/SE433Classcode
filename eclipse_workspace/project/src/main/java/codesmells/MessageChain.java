@@ -15,15 +15,20 @@ public class MessageChain {
   class Enemy {
     private Health health = new Health();
 
-    public Health getHealth() {
-      return health;
-    }
+
+
+		public void reduce(int amnt) {
+			health.reduce(amnt);
+		}
   }
 
   class Player {
     public void attack(Enemy e) {
       // Fix the message chain by adding reduce() to enemy
-      e.getHealth().reduce(10);
+      // e.getHealth().reduce(10);
+
+
+			e.reduce(10);
     }
   }
 }

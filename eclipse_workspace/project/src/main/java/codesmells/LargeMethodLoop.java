@@ -10,17 +10,21 @@ public class LargeMethodLoop {
     public void generateLevel(int width, int height) {
       System.out.println("Generating level...");
       for (int x = 0; x < width; x++) {
-        for (int y = 0; y < height; y++) {
-          System.out.println("Placing tile at (" + x + ", " + y + ")");
-          System.out.println("  Checking biome rules...");
-          System.out.println("  Spawning props...");
-          System.out.println("  Applying lighting...");
-          System.out.println("  Registering tile in navmesh...");
-        }
+        printCol(x, height);
       }
       System.out.println("Level generation complete.");
     }
-
   }
+
+	public void printCol(int x, int height) {
+    for (int y = 0; y < height; y++) {
+      System.out.println("Placing tile at (" + x + ", " + y + ")");
+      System.out.println("  Checking biome rules...");
+      System.out.println("  Spawning props...");
+      System.out.println("  Applying lighting...");
+      System.out.println("  Registering tile in navmesh...");
+    }
+
+	}
 
 }
