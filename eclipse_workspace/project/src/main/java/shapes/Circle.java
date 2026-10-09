@@ -22,4 +22,16 @@ public class Circle extends Shape implements Perimeter {
 	public double perimeter() {
 		return Math.PI * radius * 2;
 	}
+
+	@Override
+	public boolean equals(Object other) {
+		// technically should check that other is not null and that other can be a Circle
+		if (other == null) {
+			return false;
+		}
+		// else if (other. )
+
+		Circle o = (Circle) other;
+		return this.x == o.x && this.y == o.y && this.color == o.color && this.radius == o.radius;
+	}
 }
