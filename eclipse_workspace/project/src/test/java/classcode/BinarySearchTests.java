@@ -1,8 +1,10 @@
 package classcode;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.BeforeEach;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -35,7 +37,11 @@ public class BinarySearchTests {
 
 	}
 
+	// instead of adding the assertTimeoutPreemptively() you can
+	//   force the timeout to faill with the @Timeout annotation
+  // forces the kill of the "hi = mid - 1" mutant (changes - to +)
   @Test
+  @Timeout(value = 50, unit = TimeUnit.MILLISECONDS, threadMode = Timeout.ThreadMode.SEPARATE_THREAD)
   void ArrayOfAnySizeKeyAtIndexZero() {
 
 
