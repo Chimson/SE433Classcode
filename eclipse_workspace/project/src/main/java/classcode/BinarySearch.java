@@ -32,8 +32,8 @@ public static int rank(int[] a, int key) {
 }
   
 
-  public static void main(String[] args) {
-    System.out.println("Hello from Binary Search");
-  }
+  // public static void main(String[] args) {
+    //System.out.println("Hello from Binary Search");
+  //}
   
 }

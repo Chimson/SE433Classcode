@@ -2,7 +2,10 @@ package classcode;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BinarySearchTests {
   
@@ -14,16 +17,29 @@ public class BinarySearchTests {
   // first test case from Equivalence Partitioning
   // rank([1, 2, 3, 4], 1)
   
-  int[] sizeTwo = new int[] {3, 4};
+  int[] sizeTwo;
   
   @BeforeEach
   void arrayBank() {
     sizeTwo = new int[] {3, 4};
   }
-  
+
+	@Test
+	void ArrayNonEmptyKeyAtIndexNonZero() {
+		// assertTimeoutPreemptively(Duration.ofMillis(50), () -> {
+			// BinarySearch.rank(sizeTwo, 1);
+		// });
+
+		int expected = 1;
+		assertEquals(expected, BinarySearch.rank(sizeTwo, 4));
+
+	}
+
   @Test
   void ArrayOfAnySizeKeyAtIndexZero() {
-    // setup
+
+
+		// setup
     int[] arr = new int[] {1, 2, 3, 4};
     
     // apply test case
@@ -34,7 +50,16 @@ public class BinarySearchTests {
     assertEquals(expected, actual);
     
   }
-  
+
+	  @Test
+    void ArrayOfAnySizeKeyAtIndexEnd() {
+
+      int[] arr = new int[] {10, 14, 17, 20, 23};
+
+
+			assertEquals(4, BinarySearch.rank(arr, 23));
+    }
+
   @Test
   void ArrayEmptyAnyKey() {
     // setup
@@ -48,5 +73,15 @@ public class BinarySearchTests {
     assertEquals(expected, actual);
   }
   
-  
+  // this test really doesn't do anything other than show how you can
+  //   force a test fail if a mutant times out.
+  @Test
+  void showForceTimeout() {
+    int[] arr = new int[] {10, 14, 17, 20, 23};
+		assertTimeoutPreemptively(Duration.ofMillis(50), () -> {
+			BinarySearch.rank(arr, 0);
+    });
+    assertTrue(true);
+  }
+
 }
