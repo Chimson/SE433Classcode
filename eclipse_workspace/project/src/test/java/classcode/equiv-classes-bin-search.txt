@@ -1,32 +1,6 @@
 Selecting Test Cases Considering only Equivalence Partitioning
 From The Art of Software Testing, 3rd Edition
 
-Given an input or external condition, identifying the equivalence classes is largely a heuristic process.
-Follow these guidelines:
-
-1. If an input condition specifies a range of values (e.g., “the item count can be from 1 to 999”),
-identify one valid equivalence class (1<item count<999) and two invalid equivalence classes
-(item count<1 and item count>999).
-
-2. If an input condition specifies the number of values (e.g., “one through six owners can be
-listed for the automobile”), identify one valid equivalence class and two invalid equivalence
-classes (no owners and more than six owners).
-
-3. If an input condition specifies a set of input values, and there is reason to believe
-that the program handles each differently (“type of vehicle must be BUS, TRUCK, TAXICAB,
-PASSENGER, or MOTORCYCLE”), identify a valid equivalence class for each and one invalid
-equivalence class (“TRAILER,” for example).
-
-4. If an input condition specifies a “must-be” situation, such as “first character of the
-identifier must be a letter,” identify one valid equivalence class (it is a letter) and one
-invalid equivalence class (it is not a letter).
-
-If there is any reason to believe that the program does not handle elements in an equivalence
- class identically, split the equivalence class into smaller equivalence classes. We will illustrate
- an example of this process shortly.
-
-==========
-
 Binary Search in SE450Classcode/src/classcode:
 public static int rank(int[] a, int key) {...}
 Assume that we don't know anything about binary search implementation
@@ -36,8 +10,7 @@ Also we'll assume that the function does not need to validate or detect that the
     this could be handled before this function is called
 
 Explicit Input Conditions (IC):
-    Must take int array of any size
-        do not need to consider null reference
+    Must take int array of any nonempty size
     Array can hold the key in any position
     Array may not contain the key at all
     Key can be any int
@@ -48,20 +21,19 @@ Explicit Input Conditions (IC):
 We want to find both valid and invalid equivalence classes
 Equivalence Classes (EC) based on above input conditions:
   IC - Must take int array of any size. say n
-    Valid EC - the set of arrays of any size
-    Invalid EC - empty array
+    Valid EC - the set of arrays of any nonempty size
+    Invalid EC - empty array 
+    Invalid EC - null reference
   IC - Array can hold the key in any position
-    Valid EC - key at arr[0]
-    Valid EC - key at arr[n-1]
-    Valid EC - arr[0] < key < arr[n-1]
-    Invalid EC's here are Valid EC's for next input condition
-  IC - Array may not contain the key at all
-    Valid EC - key < all the array values
-    Valid EC - key > all the array values
+    Valid EC - key at arr[i] where 0 <= i < arr.length
+    Invalid EC - these are valid in next IC
+  IC - Array does not contain the key at all
+    Valid EC - any key < all the array values
+    Valid EC - any key > all the array values
     Valid EC - key not in array but in arr[0] < key < arr[n-1]
     Invalid EC's here are Valid EC's for previous input condition
   IC - Key can be any int
-    Valid EC - pick any int key
+    Valid EC - pick any int key - specification does not require MAX or MIN consideration
     Invalid EC does not exist since compiler will coerce to int or throw exception
 
 =====
