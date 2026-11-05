@@ -10,8 +10,9 @@ public class BinarySearch {
       O(n) vs O(lg(N))
     rank returns true when it finds key in the array    
   */
-  
-  // a.length <
+
+
+// IC: array coming in is sorted
 public static int rank(int[] a, int key) {
 	// a must be sorted
   int lo = 0;
@@ -30,10 +31,12 @@ public static int rank(int[] a, int key) {
   }
   return -1;
 }
+
+
   
 
-  // public static void main(String[] args) {
-    //System.out.println("Hello from Binary Search");
-  //}
+  public static void main(String[] args) {
+
+  }
   
 }
